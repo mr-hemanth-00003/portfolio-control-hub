@@ -14,21 +14,16 @@ const ContactShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const baseProps = {
-    ref: meshRef,
-    position: position as [number, number, number]
-  };
-
   if (type === 'torus') {
     return (
-      <Torus {...baseProps}>
+      <Torus ref={meshRef} position={position}>
         <meshStandardMaterial color={color} opacity={0.7} transparent />
       </Torus>
     );
   }
 
   return (
-    <Sphere {...baseProps}>
+    <Sphere ref={meshRef} position={position}>
       <meshStandardMaterial color={color} opacity={0.7} transparent />
     </Sphere>
   );
