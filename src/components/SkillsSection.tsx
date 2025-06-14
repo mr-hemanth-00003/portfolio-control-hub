@@ -1,9 +1,17 @@
 
 import React from 'react';
-import { useAdmin } from '../contexts/AdminContext';
 
 const SkillsSection = () => {
-  const { skills } = useAdmin();
+  const skills = [
+    { id: 1, name: "React", level: 90, category: "Frontend" },
+    { id: 2, name: "TypeScript", level: 85, category: "Frontend" },
+    { id: 3, name: "Tailwind CSS", level: 95, category: "Frontend" },
+    { id: 4, name: "Node.js", level: 80, category: "Backend" },
+    { id: 5, name: "Express", level: 75, category: "Backend" },
+    { id: 6, name: "MongoDB", level: 70, category: "Backend" },
+    { id: 7, name: "Three.js", level: 65, category: "3D/Graphics" },
+    { id: 8, name: "WebGL", level: 60, category: "3D/Graphics" }
+  ];
   
   const skillCategories = Array.from(new Set(skills.map(s => s.category)));
 

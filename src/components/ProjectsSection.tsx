@@ -1,10 +1,41 @@
 
 import React, { useState } from 'react';
 import { ExternalLink, Github, Filter } from 'lucide-react';
-import { useAdmin } from '../contexts/AdminContext';
 
 const ProjectsSection = () => {
-  const { projects } = useAdmin();
+  const projects = [
+    {
+      id: 1,
+      title: "E-Commerce Platform",
+      description: "A full-featured e-commerce platform built with React and Node.js, featuring user authentication, payment processing, and admin dashboard.",
+      category: "Web Development",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      imageUrl: "/placeholder.svg",
+      projectUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 2,
+      title: "Task Management App",
+      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+      category: "Web Development",
+      technologies: ["React", "Firebase", "Material-UI"],
+      imageUrl: "/placeholder.svg",
+      projectUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      id: 3,
+      title: "3D Portfolio Website",
+      description: "An interactive 3D portfolio website showcasing projects with Three.js animations and immersive user experience.",
+      category: "3D Development",
+      technologies: ["React", "Three.js", "WebGL"],
+      imageUrl: "/placeholder.svg",
+      projectUrl: "#",
+      githubUrl: "#"
+    }
+  ];
+
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];

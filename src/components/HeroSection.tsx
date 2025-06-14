@@ -1,10 +1,17 @@
 
 import React from 'react';
 import { Github, Linkedin, Mail, Download, ChevronDown } from 'lucide-react';
-import { useAdmin } from '../contexts/AdminContext';
 
 const HeroSection = () => {
-  const { profileInfo } = useAdmin();
+  const profileInfo = {
+    name: "John Doe",
+    title: "Full Stack Developer",
+    bio: "Passionate about creating amazing web experiences with modern technologies. I specialize in React, Node.js, and everything in between.",
+    github: "https://github.com",
+    linkedin: "https://linkedin.com",
+    email: "contact@example.com",
+    resume: "#"
+  };
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });

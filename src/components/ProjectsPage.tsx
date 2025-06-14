@@ -1,7 +1,6 @@
 
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Icosahedron, Ring } from '@react-three/drei';
 import { ExternalLink, Github } from 'lucide-react';
 import * as THREE from 'three';
 
@@ -17,12 +16,14 @@ const ProjectShape = ({ position, color }: { position: [number, number, number],
 
   return (
     <group>
-      <Icosahedron ref={meshRef} position={position}>
+      <mesh ref={meshRef} position={position}>
+        <icosahedronGeometry args={[1]} />
         <meshStandardMaterial color={color} wireframe />
-      </Icosahedron>
-      <Ring position={[position[0], position[1], position[2] + 0.5]}>
+      </mesh>
+      <mesh position={[position[0], position[1], position[2] + 0.5]}>
+        <ringGeometry args={[0.8, 1.2, 32]} />
         <meshStandardMaterial color={color} opacity={0.3} transparent />
-      </Ring>
+      </mesh>
     </group>
   );
 };

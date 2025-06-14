@@ -1,11 +1,14 @@
 
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { useAdmin } from '../contexts/AdminContext';
-import { toast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
-  const { profileInfo } = useAdmin();
+  const profileInfo = {
+    email: "contact@example.com",
+    phone: "+1 (555) 123-4567",
+    location: "San Francisco, CA"
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,11 +17,8 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send the email
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon."
-    });
+    console.log('Form submitted:', formData);
+    alert('Message sent successfully!');
     setFormData({ name: '', email: '', message: '' });
   };
 
