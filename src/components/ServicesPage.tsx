@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Cylinder, Cone, Tetrahedron } from '@react-three/drei';
@@ -15,7 +16,7 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cylinder') {
     return (
-      <Cylinder ref={meshRef} position={position}>
+      <Cylinder position={position} ref={meshRef}>
         <meshStandardMaterial color={color} />
       </Cylinder>
     );
@@ -23,14 +24,14 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cone') {
     return (
-      <Cone ref={meshRef} position={position}>
+      <Cone position={position} ref={meshRef}>
         <meshStandardMaterial color={color} />
       </Cone>
     );
   }
 
   return (
-    <Tetrahedron ref={meshRef} position={position}>
+    <Tetrahedron position={position} ref={meshRef}>
       <meshStandardMaterial color={color} />
     </Tetrahedron>
   );
