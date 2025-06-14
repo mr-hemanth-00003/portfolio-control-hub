@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Torus, Sphere } from '@react-three/drei';
@@ -15,21 +14,16 @@ const ContactShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const sharedProps = {
-    ref: meshRef,
-    position: position,
-  };
-
   if (type === 'torus') {
     return (
-      <Torus {...sharedProps}>
+      <Torus ref={meshRef} position={position}>
         <meshStandardMaterial color={color} opacity={0.7} transparent />
       </Torus>
     );
   }
 
   return (
-    <Sphere {...sharedProps}>
+    <Sphere ref={meshRef} position={position}>
       <meshStandardMaterial color={color} opacity={0.7} transparent />
     </Sphere>
   );

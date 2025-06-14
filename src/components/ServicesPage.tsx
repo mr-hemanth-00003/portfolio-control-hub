@@ -1,8 +1,7 @@
-
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Cylinder, Cone, Tetrahedron } from '@react-three/drei';
-import * * THREE from 'three';
+import * as THREE from 'three';
 
 const ServiceShape = ({ position, color, type }: { position: [number, number, number], color: string, type: string }) => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -14,14 +13,9 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const sharedProps = {
-    ref: meshRef,
-    position: position,
-  };
-
   if (type === 'cylinder') {
     return (
-      <Cylinder {...sharedProps}>
+      <Cylinder ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Cylinder>
     );
@@ -29,14 +23,14 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cone') {
     return (
-      <Cone {...sharedProps}>
+      <Cone ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Cone>
     );
   }
 
   return (
-    <Tetrahedron {...sharedProps}>
+    <Tetrahedron ref={meshRef} position={position}>
       <meshStandardMaterial color={color} />
     </Tetrahedron>
   );
