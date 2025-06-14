@@ -16,7 +16,7 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cylinder') {
     return (
-      <Cylinder ref={meshRef} position={position} args={[1, 1, 2, 32]}>
+      <Cylinder ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Cylinder>
     );
@@ -24,14 +24,14 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cone') {
     return (
-      <Cone ref={meshRef} position={position} args={[1, 2, 32]}>
+      <Cone ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Cone>
     );
   }
 
   return (
-    <Tetrahedron ref={meshRef} position={position} args={[1, 0]}>
+    <Tetrahedron ref={meshRef} position={position}>
       <meshStandardMaterial color={color} />
     </Tetrahedron>
   );

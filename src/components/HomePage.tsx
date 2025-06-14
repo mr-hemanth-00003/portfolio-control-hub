@@ -17,7 +17,7 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
 
   if (type === 'sphere') {
     return (
-      <Sphere ref={meshRef} position={position} args={[1, 32, 32]}>
+      <Sphere ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Sphere>
     );
@@ -25,14 +25,14 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
 
   if (type === 'box') {
     return (
-      <Box ref={meshRef} position={position} args={[1, 1, 1]}>
+      <Box ref={meshRef} position={position}>
         <meshStandardMaterial color={color} />
       </Box>
     );
   }
 
   return (
-    <Torus ref={meshRef} position={position} args={[1, 0.3, 16, 32]}>
+    <Torus ref={meshRef} position={position}>
       <meshStandardMaterial color={color} />
     </Torus>
   );
