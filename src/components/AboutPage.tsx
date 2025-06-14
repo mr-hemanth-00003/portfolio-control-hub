@@ -13,18 +13,21 @@ const RotatingShape = ({ position, color, shape }: { position: [number, number, 
     }
   });
 
-  let geometry;
   if (shape === 'dodecahedron') {
-    geometry = new THREE.DodecahedronGeometry(1);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <dodecahedronGeometry args={[1]} />
+        <meshStandardMaterial color={color} wireframe />
+      </mesh>
+    );
   } else {
-    geometry = new THREE.OctahedronGeometry(1);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <octahedronGeometry args={[1]} />
+        <meshStandardMaterial color={color} wireframe />
+      </mesh>
+    );
   }
-
-  return (
-    <mesh ref={meshRef} position={position} geometry={geometry}>
-      <meshStandardMaterial color={color} wireframe />
-    </mesh>
-  );
 };
 
 const AboutScene = () => {

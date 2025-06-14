@@ -13,20 +13,28 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  let geometry;
   if (type === 'cylinder') {
-    geometry = new THREE.CylinderGeometry(1, 1, 2, 32);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <cylinderGeometry args={[1, 1, 2, 32]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   } else if (type === 'cone') {
-    geometry = new THREE.ConeGeometry(1, 2, 32);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <coneGeometry args={[1, 2, 32]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   } else {
-    geometry = new THREE.TetrahedronGeometry(1);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <tetrahedronGeometry args={[1]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   }
-
-  return (
-    <mesh ref={meshRef} position={position} geometry={geometry}>
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
 };
 
 const ServicesScene = () => {

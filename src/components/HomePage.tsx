@@ -14,20 +14,28 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
     }
   });
 
-  let geometry;
   if (type === 'sphere') {
-    geometry = new THREE.SphereGeometry(1, 32, 32);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   } else if (type === 'box') {
-    geometry = new THREE.BoxGeometry(1, 1, 1);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   } else {
-    geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <torusGeometry args={[1, 0.4, 16, 100]} />
+        <meshStandardMaterial color={color} />
+      </mesh>
+    );
   }
-
-  return (
-    <mesh ref={meshRef} position={position} geometry={geometry}>
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
 };
 
 const Scene3D = () => {

@@ -14,18 +14,21 @@ const ContactShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  let geometry;
   if (type === 'torus') {
-    geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <torusGeometry args={[1, 0.4, 16, 100]} />
+        <meshStandardMaterial color={color} opacity={0.7} transparent />
+      </mesh>
+    );
   } else {
-    geometry = new THREE.SphereGeometry(1, 32, 32);
+    return (
+      <mesh ref={meshRef} position={position}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial color={color} opacity={0.7} transparent />
+      </mesh>
+    );
   }
-
-  return (
-    <mesh ref={meshRef} position={position} geometry={geometry}>
-      <meshStandardMaterial color={color} opacity={0.7} transparent />
-    </mesh>
-  );
 };
 
 const ContactScene = () => {
