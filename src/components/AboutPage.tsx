@@ -1,7 +1,6 @@
 
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Dodecahedron, Octahedron } from '@react-three/drei';
 import * as THREE from 'three';
 
 const RotatingShape = ({ position, color, shape }: { position: [number, number, number], color: string, shape: string }) => {
@@ -14,18 +13,17 @@ const RotatingShape = ({ position, color, shape }: { position: [number, number, 
     }
   });
 
+  let geometry;
   if (shape === 'dodecahedron') {
-    return (
-      <Dodecahedron position={position} ref={meshRef}>
-        <meshStandardMaterial color={color} wireframe />
-      </Dodecahedron>
-    );
+    geometry = new THREE.DodecahedronGeometry(1);
+  } else {
+    geometry = new THREE.OctahedronGeometry(1);
   }
 
   return (
-    <Octahedron position={position} ref={meshRef}>
+    <mesh ref={meshRef} position={position} geometry={geometry}>
       <meshStandardMaterial color={color} wireframe />
-    </Octahedron>
+    </mesh>
   );
 };
 

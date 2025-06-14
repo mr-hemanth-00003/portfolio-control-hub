@@ -1,7 +1,6 @@
 
 import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Torus, Sphere } from '@react-three/drei';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import * as THREE from 'three';
 
@@ -15,18 +14,17 @@ const ContactShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
+  let geometry;
   if (type === 'torus') {
-    return (
-      <Torus position={position} ref={meshRef}>
-        <meshStandardMaterial color={color} opacity={0.7} transparent />
-      </Torus>
-    );
+    geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+  } else {
+    geometry = new THREE.SphereGeometry(1, 32, 32);
   }
 
   return (
-    <Sphere position={position} ref={meshRef}>
+    <mesh ref={meshRef} position={position} geometry={geometry}>
       <meshStandardMaterial color={color} opacity={0.7} transparent />
-    </Sphere>
+    </mesh>
   );
 };
 

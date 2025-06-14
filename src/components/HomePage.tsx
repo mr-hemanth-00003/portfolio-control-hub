@@ -1,7 +1,6 @@
 
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
 
 const FloatingGeometry = ({ position, color, type }: { position: [number, number, number], color: string, type: string }) => {
@@ -15,26 +14,19 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
     }
   });
 
+  let geometry;
   if (type === 'sphere') {
-    return (
-      <Sphere position={position} ref={meshRef}>
-        <meshStandardMaterial color={color} />
-      </Sphere>
-    );
-  }
-
-  if (type === 'box') {
-    return (
-      <Box position={position} ref={meshRef}>
-        <meshStandardMaterial color={color} />
-      </Box>
-    );
+    geometry = new THREE.SphereGeometry(1, 32, 32);
+  } else if (type === 'box') {
+    geometry = new THREE.BoxGeometry(1, 1, 1);
+  } else {
+    geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
   }
 
   return (
-    <Torus position={position} ref={meshRef}>
+    <mesh ref={meshRef} position={position} geometry={geometry}>
       <meshStandardMaterial color={color} />
-    </Torus>
+    </mesh>
   );
 };
 
