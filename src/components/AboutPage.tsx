@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Dodecahedron, Octahedron } from '@react-three/drei';
@@ -13,16 +14,21 @@ const RotatingShape = ({ position, color, shape }: { position: [number, number, 
     }
   });
 
+  const sharedProps = {
+    ref: meshRef,
+    position: position,
+  };
+
   if (shape === 'dodecahedron') {
     return (
-      <Dodecahedron ref={meshRef} position={position} args={[1]}>
+      <Dodecahedron {...sharedProps}>
         <meshStandardMaterial color={color} wireframe />
       </Dodecahedron>
     );
   }
 
   return (
-    <Octahedron ref={meshRef} position={position} args={[1]}>
+    <Octahedron {...sharedProps}>
       <meshStandardMaterial color={color} wireframe />
     </Octahedron>
   );

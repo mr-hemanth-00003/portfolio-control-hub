@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Icosahedron, Ring } from '@react-three/drei';
@@ -16,10 +17,10 @@ const ProjectShape = ({ position, color }: { position: [number, number, number],
 
   return (
     <group>
-      <Icosahedron ref={meshRef} position={position} args={[1]}>
+      <Icosahedron ref={meshRef} position={position}>
         <meshStandardMaterial color={color} wireframe />
       </Icosahedron>
-      <Ring position={[position[0], position[1], position[2] + 0.5]} args={[1.5, 2, 32]}>
+      <Ring position={[position[0], position[1], position[2] + 0.5]}>
         <meshStandardMaterial color={color} opacity={0.3} transparent />
       </Ring>
     </group>

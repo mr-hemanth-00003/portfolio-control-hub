@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, Box, Torus } from '@react-three/drei';
@@ -14,9 +15,14 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
     }
   });
 
+  const sharedProps = {
+    ref: meshRef,
+    position: position,
+  };
+
   if (type === 'sphere') {
     return (
-      <Sphere ref={meshRef} position={position} args={[1]}>
+      <Sphere {...sharedProps}>
         <meshStandardMaterial color={color} />
       </Sphere>
     );
@@ -24,14 +30,14 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
 
   if (type === 'box') {
     return (
-      <Box ref={meshRef} position={position} args={[1, 1, 1]}>
+      <Box {...sharedProps}>
         <meshStandardMaterial color={color} />
       </Box>
     );
   }
 
   return (
-    <Torus ref={meshRef} position={position} args={[1, 0.4, 16, 32]}>
+    <Torus {...sharedProps}>
       <meshStandardMaterial color={color} />
     </Torus>
   );
