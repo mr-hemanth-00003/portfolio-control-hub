@@ -14,9 +14,14 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
     }
   });
 
+  const baseProps = {
+    ref: meshRef,
+    position: position as [number, number, number]
+  };
+
   if (type === 'sphere') {
     return (
-      <Sphere ref={meshRef} position={position}>
+      <Sphere {...baseProps}>
         <meshStandardMaterial color={color} />
       </Sphere>
     );
@@ -24,14 +29,14 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
 
   if (type === 'box') {
     return (
-      <Box ref={meshRef} position={position}>
+      <Box {...baseProps}>
         <meshStandardMaterial color={color} />
       </Box>
     );
   }
 
   return (
-    <Torus ref={meshRef} position={position}>
+    <Torus {...baseProps}>
       <meshStandardMaterial color={color} />
     </Torus>
   );
