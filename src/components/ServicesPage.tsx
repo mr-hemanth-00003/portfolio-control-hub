@@ -14,16 +14,26 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const ShapeComponent = type === 'cylinder' ? Cylinder : type === 'cone' ? Cone : Tetrahedron;
+  if (type === 'cylinder') {
+    return (
+      <Cylinder ref={meshRef} position={position} args={[1, 1, 2, 32]}>
+        <meshStandardMaterial color={color} />
+      </Cylinder>
+    );
+  }
+
+  if (type === 'cone') {
+    return (
+      <Cone ref={meshRef} position={position} args={[1, 2, 32]}>
+        <meshStandardMaterial color={color} />
+      </Cone>
+    );
+  }
 
   return (
-    <ShapeComponent
-      ref={meshRef}
-      position={position}
-      args={type === 'cylinder' ? [1, 1, 2] : type === 'cone' ? [1, 2] : [1]}
-    >
+    <Tetrahedron ref={meshRef} position={position} args={[1, 0]}>
       <meshStandardMaterial color={color} />
-    </ShapeComponent>
+    </Tetrahedron>
   );
 };
 

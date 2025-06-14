@@ -15,16 +15,26 @@ const FloatingGeometry = ({ position, color, type }: { position: [number, number
     }
   });
 
-  const GeometryComponent = type === 'sphere' ? Sphere : type === 'box' ? Box : Torus;
+  if (type === 'sphere') {
+    return (
+      <Sphere ref={meshRef} position={position} args={[1, 32, 32]}>
+        <meshStandardMaterial color={color} />
+      </Sphere>
+    );
+  }
+
+  if (type === 'box') {
+    return (
+      <Box ref={meshRef} position={position} args={[1, 1, 1]}>
+        <meshStandardMaterial color={color} />
+      </Box>
+    );
+  }
 
   return (
-    <GeometryComponent
-      ref={meshRef}
-      position={position}
-      args={type === 'torus' ? [1, 0.3, 16, 32] : [1, 1, 1]}
-    >
+    <Torus ref={meshRef} position={position} args={[1, 0.3, 16, 32]}>
       <meshStandardMaterial color={color} />
-    </GeometryComponent>
+    </Torus>
   );
 };
 

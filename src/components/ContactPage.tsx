@@ -15,16 +15,18 @@ const ContactShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const ShapeComponent = type === 'torus' ? Torus : Sphere;
+  if (type === 'torus') {
+    return (
+      <Torus ref={meshRef} position={position} args={[2, 0.5, 16, 32]}>
+        <meshStandardMaterial color={color} opacity={0.7} transparent />
+      </Torus>
+    );
+  }
 
   return (
-    <ShapeComponent
-      ref={meshRef}
-      position={position}
-      args={type === 'torus' ? [2, 0.5, 16, 32] : [1]}
-    >
+    <Sphere ref={meshRef} position={position} args={[1, 32, 32]}>
       <meshStandardMaterial color={color} opacity={0.7} transparent />
-    </ShapeComponent>
+    </Sphere>
   );
 };
 
