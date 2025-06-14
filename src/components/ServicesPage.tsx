@@ -13,14 +13,9 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
     }
   });
 
-  const commonProps = {
-    ref: meshRef,
-    position: position
-  };
-
   if (type === 'cylinder') {
     return (
-      <Cylinder {...commonProps} args={[1, 1, 2, 32]}>
+      <Cylinder ref={meshRef} position={position} args={[1, 1, 2, 32]}>
         <meshStandardMaterial color={color} />
       </Cylinder>
     );
@@ -28,14 +23,14 @@ const ServiceShape = ({ position, color, type }: { position: [number, number, nu
 
   if (type === 'cone') {
     return (
-      <Cone {...commonProps} args={[1, 2, 32]}>
+      <Cone ref={meshRef} position={position} args={[1, 2, 32]}>
         <meshStandardMaterial color={color} />
       </Cone>
     );
   }
 
   return (
-    <Tetrahedron {...commonProps} args={[1]}>
+    <Tetrahedron ref={meshRef} position={position} args={[1]}>
       <meshStandardMaterial color={color} />
     </Tetrahedron>
   );

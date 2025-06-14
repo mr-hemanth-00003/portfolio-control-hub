@@ -13,21 +13,16 @@ const RotatingShape = ({ position, color, shape }: { position: [number, number, 
     }
   });
 
-  const commonProps = {
-    ref: meshRef,
-    position: position
-  };
-
   if (shape === 'dodecahedron') {
     return (
-      <Dodecahedron {...commonProps} args={[1]}>
+      <Dodecahedron ref={meshRef} position={position} args={[1]}>
         <meshStandardMaterial color={color} wireframe />
       </Dodecahedron>
     );
   }
 
   return (
-    <Octahedron {...commonProps} args={[1]}>
+    <Octahedron ref={meshRef} position={position} args={[1]}>
       <meshStandardMaterial color={color} wireframe />
     </Octahedron>
   );
